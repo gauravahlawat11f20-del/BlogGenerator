@@ -1,0 +1,99 @@
+/* Full page wrapper */
+.notification-page {
+  min-height: 100vh;
+  width: 100%;
+  background: #f4f6f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+/* Page title */
+.notification-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* Notification list container */
+.notification-list {
+  width: 100%;
+  max-width: 700px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  max-height: 75vh; /* scrollbar area */
+}
+
+/* Scrollbar styling */
+.notification-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.notification-list::-webkit-scrollbar-thumb {
+  background: #cfd8dc;
+  border-radius: 10px;
+}
+
+.notification-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Empty state */
+.no-notification {
+  text-align: center;
+  color: #777;
+  font-size: 16px;
+  padding: 40px 0;
+}
+
+/* Notification card */
+.notification-card {
+  border-bottom: 1px solid #eee;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.2s ease;
+}
+
+.notification-card:last-child {
+  border-bottom: none;
+}
+
+.notification-card:hover {
+  background: #f9f9f9;
+}
+
+/* Main text */
+.notification-text {
+  font-size: 15px;
+  color: #333;
+}
+
+/* Username highlight */
+.user-name {
+  font-weight: 600;
+  color: #1a73e8;
+}
+
+/* Comment message */
+.notification-message {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+  margin-left: 2px;
+}
+
+/* Time */
+.notification-card p:last-child {
+  font-size: 12px;
+  color: #888;
+  align-self: flex-end;
+}
+

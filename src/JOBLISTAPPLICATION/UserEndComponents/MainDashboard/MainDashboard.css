@@ -1,0 +1,205 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.dashboard {
+  min-height: 100vh;
+  padding: 30px 60px;
+  background: url("/R.jpg") center/cover no-repeat;
+}
+
+
+.navbar {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(14px);
+  padding: 18px 40px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0a2540;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 38px;
+}
+
+.menu li {
+  cursor: pointer;
+  color: #7a8ca5;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.menu li::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: #1e90ff;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.menu li:hover,
+.menu li.active {
+  color: #0a2540;
+}
+
+.menu li:hover::after,
+.menu li.active::after {
+  width: 100%;
+}
+
+
+.hero {
+  margin-top: 110px;
+  text-align: center;
+}
+
+
+.hero-text {
+  animation: textReveal 1s ease forwards;
+  opacity: 0;
+}
+
+.hero-text h1 {
+  font-size: 52px;
+  font-weight: 700;
+  color: #0a2540;
+}
+
+.hero-text p {
+  margin-top: 12px;
+  font-size: 20px;
+  color: #4f6b8a;
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.collage {
+  position: relative;
+  margin-top: 90px;
+  height: 520px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.frame {
+  position: absolute;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 40px 70px rgba(0,0,0,0.25);
+  background: white;
+  transition: transform 0.35s ease;
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.frame:hover {
+  transform: translateY(-12px) scale(1.04);
+  z-index: 10;
+}
+
+.hero {
+  margin-top: 70px; /* was too low */
+  display: flex;
+  justify-content: center;
+ 
+}
+
+.hero-inner {
+  width: 100%;
+  max-width: 1400px; /* fits 100vw nicely */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.frame.a {
+  width: 230px;
+  height: 300px;
+  left: 14%;
+  bottom: 30px;
+}
+
+.frame.b {
+  width: 280px;
+  height: 210px;
+  left: 24%;
+  bottom: 150px;
+}
+
+.frame.c {
+  width: 340px;
+  height: 380px;
+  left: 38%;
+  bottom: 0;
+}
+
+.frame.d {
+  width: 270px;
+  height: 320px;
+  left: 53%;
+  bottom: 120px;
+}
+
+.frame.e {
+  width: 230px;
+  height: 270px;
+  left: 66%;
+  bottom: 25px;
+}
+
+.frame.f {
+  width: 200px;
+  height: 230px;
+  left: 73%;
+  bottom: 180px;
+}
+
+.collage {
+  position: relative;
+  margin-top: 50px;   /* reduced from 90 */
+  height: 460px;      /* reduced from 520 */
+  width: 100%;
+}
+
+.shift{
+  margin-top: 35px;
+}
+
+
+.Name{
+  margin-top: 15px;
+}

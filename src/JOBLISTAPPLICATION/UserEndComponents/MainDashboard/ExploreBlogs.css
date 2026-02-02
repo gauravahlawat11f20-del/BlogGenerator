@@ -1,0 +1,335 @@
+/* ================= GLOBAL ================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.explore-page {
+  width: 100%;
+  padding: 40px 6%;
+  background: #f7f9fc;
+}
+
+/* ================= HERO ================= */
+.explore-hero {
+  text-align: center;
+  padding: 40px 0 20px;
+}
+
+.explore-hero h1 {
+  font-size: 34px;
+  font-weight: 600;
+  color: #1f2933;
+  margin-bottom: 10px;
+}
+
+.explore-hero p {
+  font-size: 15px;
+  color: #6b7280;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* ================= PROJECTS SECTION ================= */
+.projects-section {
+  margin-top: 40px;
+}
+
+.projects-section h2 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #1f2933;
+  margin-bottom: 20px;
+}
+
+/* ================= GRID ================= */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* ================= CARD ================= */
+.project-card {
+  height: 440px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* IMAGE – TOP 60% */
+.project-image {
+  height: 60%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* INFO – BOTTOM 40% */
+.project-info {
+  height: 40%;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* TITLE */
+.project-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 4px;
+}
+
+/* META */
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theme-tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #eef3ff;
+  color: #4a6cf7;
+  font-weight: 500;
+}
+
+.author-name {
+  font-size: 12px;
+  color: #777;
+}
+
+/* DESCRIPTION */
+.project-desc {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+  margin: 8px 0 10px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ACTIONS */
+.project-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* PREVIEW */
+.preview-btn {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #4facfe, #00c6ff);
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.preview-btn:hover {
+  opacity: 0.9;
+}
+
+/* LIKE */
+.like-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: white;
+  color: #999;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.1);
+}
+
+.like-btn.liked {
+  background: #ff4d6d;
+  color: white;
+  border-color: #ff4d6d;
+  box-shadow: 0 8px 20px rgba(255, 77, 109, 0.45);
+}
+
+/* ================= PROMO ================= */
+.promo-section {
+  margin-top: 70px;
+  padding: 50px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #4facfe, #00c6ff);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.promo-left {
+  max-width: 55%;
+}
+
+.promo-left h2 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.promo-left p {
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+
+.promo-left h3 {
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+
+.promo-left button {
+  padding: 12px 22px;
+  border-radius: 14px;
+  border: none;
+  background: white;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.promo-right {
+  display: flex;
+  gap: 16px;
+}
+
+.promo-image {
+  width: 140px;
+  height: 180px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ================= EXTRA ================= */
+.extra-section {
+  text-align: center;
+  padding: 60px 0 20px;
+}
+
+.extra-section h2 {
+  font-size: 28px;
+  color: #1f2933;
+  margin-bottom: 10px;
+}
+
+.extra-section p {
+  font-size: 15px;
+  color: #6b7280;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .promo-section {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .promo-left {
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+
+
+
+
+
+/* ACTION BUTTONS */
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* PREVIEW */
+.preview-btn {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #4facfe, #00c6ff);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* LIKE BUTTON */
+.like-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: white;
+  color: #aaa;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  
+}
+
+/* HOVER */
+.like-btn:hover {
+  transform: scale(1.1);
+}
+
+/* LIKED STATE */
+.like-btn.liked {
+  background: #ff4d6d;
+  color: white;
+  border-color: #ff4d6d;
+  box-shadow: 0 6px 16px rgba(255, 77, 109, 0.4);
+  animation: pop 0.3s ease;
+}
+
+/* HEART POP ANIMATION */
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+

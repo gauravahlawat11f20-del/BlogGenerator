@@ -1,0 +1,71 @@
+.auth-container {
+  max-width: 420px;
+  margin: 60px auto;
+  font-family: 'Inter', sans-serif;
+}
+
+.auth-card {
+  background: white;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+}
+
+.toggle-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.toggle-btn.active {
+  background: #111;
+  color: white;
+  border-color: #111;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-input {
+  padding: 13px 15px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.auth-input:focus {
+  border-color: #444;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+}
+
+.submit-btn {
+  padding: 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}

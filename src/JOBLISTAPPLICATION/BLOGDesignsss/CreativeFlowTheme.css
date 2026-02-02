@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Pacifico&display=swap');
+
+.creative-flow {
+  font-family: 'Playfair Display', serif;
+  background: #fafafa;
+  color: #222;
+}
+
+/* NAVBAR */
+.cf-navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+}
+
+.cf-logo {
+  font-family: 'Pacifico', cursive;
+}
+
+.cf-navbar ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+/* HERO */
+.cf-hero {
+  display: flex;
+  height: 90vh;
+  margin: 40px;
+  gap: 20px;
+}
+
+.cf-hero-left {
+  width: 70%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 30px;
+  position: relative;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+}
+
+.cf-hero-text {
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+  max-width: 70%;
+  color: white;
+  font-family: 'Playfair Display', serif;
+}
+
+.cf-hero-text h1 {
+  font-size: 3.2rem;
+}
+
+.cf-hero-text p {
+  opacity: 0.9;
+}
+
+/* RIGHT IMAGES */
+.cf-hero-right {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cf-hero-right img {
+  height: 33%;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* LIST SECTION */
+.cf-lists {
+  padding: 100px 80px;
+  background: white;
+}
+
+.cf-lists h2 {
+  font-size: 2.4rem;
+  margin-bottom: 40px;
+}
+
+.cf-list-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.cf-list-cards div {
+  padding: 25px;
+  border-radius: 20px;
+  background: #f3f3f3;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  background-color: #080808;
+  color: white;
+}
+
+/* ABOUT */
+.cf-about {
+  padding: 80px;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.cf-about h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* FOOTER */
+.cf-footer {
+  padding: 30px;
+  text-align: center;
+  background: #111;
+  color: white;
+}
+
+.loader-wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-wrapper img{
+  height: 100%;
+  width: 100%;
+}
+

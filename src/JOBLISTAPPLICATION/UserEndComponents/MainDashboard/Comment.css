@@ -1,0 +1,124 @@
+/* Fullscreen background */
+.comment-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background: #f2f3f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Main container */
+.comment-container {
+  width: 90%;
+  max-width: 600px;
+  height: 85%;
+
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+/* Title */
+.comment-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Scrollable comment list */
+.comments-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Single comment */
+.comment {
+  background: #f5f6f8;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.special {
+    background: #ff4d6d;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+/* Username */
+.comment-user {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+/* Message */
+.comment-message {
+  font-size: 15px;
+  color: #333;
+}
+
+/* Time */
+.comment-time {
+  font-size: 11px;
+  color: #888;
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* Input area fixed at bottom */
+.comment-input-box {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Input */
+.comment-input-box input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Button */
+.comment-input-box button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #ff4d6d;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.comment-input-box button:hover {
+  background: #e63e5c;
+}
+
+/* Scrollbar */
+.comments-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.comments-list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
