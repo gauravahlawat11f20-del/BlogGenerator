@@ -19,6 +19,11 @@ import ExploreBlogs from './JOBLISTAPPLICATION/UserEndComponents/MainDashboard/E
 import Comment from './JOBLISTAPPLICATION/UserEndComponents/MainDashboard/Comment'
 import Notification from './JOBLISTAPPLICATION/UserEndComponents/MainDashboard/Notification'
 import Edit from './JOBLISTAPPLICATION/UserEndComponents/Edit'
+import PhotoFirst from './JOBLISTAPPLICATION/BLOGDesignsss/PhotoFirst'
+import DarkModeTheme from './JOBLISTAPPLICATION/BLOGDesignsss/DarkModeTheme'
+import CardLayoutTheme from './JOBLISTAPPLICATION/BLOGDesignsss/CardLayoutTheme'
+import PersonalJournalTheme from './JOBLISTAPPLICATION/BLOGDesignsss/PersonalJournalTheme'
+import { ToastProvider } from './components/ToastProvider'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -26,29 +31,27 @@ function App() {
   return (
     <>
 
-    <BrowserRouter>
-     <Routes>
-      <Route path='/' element={<UserLoginAndregister/>}/>
-      <Route path='/dash/:Name' element={  <> <MainDashboardd/>  <ExploreBlogs/>   </>}/>
-       <Route path='/selectTheme' element={<SelectTheme/>}/>
-        <Route path='/create/:Name' element={<CreateBlog/>}/>
-        <Route path='/MinimalCleanTheme/:Title' element={<MinimalCleanTheme/>}/>
-         <Route path='/Editorial/:Title' element={<CreativeFlowTheme/>}/>
-         <Route path='/upload/:Theme/:Title' element={<PublishProject/>} />
-
+    <ToastProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<UserLoginAndregister/>}/>
+          <Route path='/dash/:Name' element={  <> <MainDashboardd/>  <ExploreBlogs/>   </>}/>
+          <Route path='/selectTheme' element={<SelectTheme/>}/>
+          <Route path='/create/:Name' element={<CreateBlog/>}/>
+          <Route path='/MinimalCleanTheme/:Title' element={<MinimalCleanTheme/>}/>
+          <Route path='/Editorial/:Title' element={<CreativeFlowTheme/>}/>
+          <Route path='/PhotoFirst/:Title' element={<PhotoFirst/>}/>
+          <Route path='/DarkMode/:Title' element={<DarkModeTheme/>}/>
+          <Route path='/CardLayout/:Title' element={<CardLayoutTheme/>}/>
+          <Route path='/PersonalJournal/:Title' element={<PersonalJournalTheme/>}/>
+          <Route path='/upload/:Theme/:Title' element={<PublishProject/>} />
           <Route path="/urProfile/:Name" element={<ProfileInfo/>}/>
-
-           <Route path="/comment/:blogId" element={<Comment/>}/>
-
-           <Route path="/notification" element={<Notification/>}/>
-
-
-
-           
-           <Route path="/edit" element={<Edit/>}/>
-
-     </Routes>
-    </BrowserRouter>
+          <Route path="/comment/:blogId" element={<Comment/>}/>
+          <Route path="/notification" element={<Notification/>}/>
+          <Route path="/edit" element={<Edit/>}/>
+        </Routes>
+      </BrowserRouter>
+    </ToastProvider>
 
     
 

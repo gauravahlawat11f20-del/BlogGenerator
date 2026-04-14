@@ -3,6 +3,7 @@ import "./CreateBlog.css";
 import { DB } from "../../../OperationsWithFirebase/firebase";
 import { set, child } from "firebase/database";
 import { useNavigate, useParams } from "react-router-dom";
+import { useToast } from "../../../components/ToastProvider";
 
 export default function CreateBlog() {
 
@@ -22,6 +23,7 @@ export default function CreateBlog() {
  })
 
  const navigation = useNavigate()
+ const toast = useToast()
 
  const {Name} = useParams()
 
@@ -32,7 +34,7 @@ export default function CreateBlog() {
  }
 
  useEffect(()=>{
-     setObj({...obj , title : JSON.parse(localStorage.getItem("blogToBeEdited")) || "" })
+     setObj(prev => ({...prev , title : JSON.parse(localStorage.getItem("blogToBeEdited")) || "" }))
  },[])
 
 
@@ -51,9 +53,18 @@ export default function CreateBlog() {
 
       localStorage.setItem("allow" , JSON.stringify(true))
 
+    if(!obj.title.trim()){
+      toast.error("Please enter a blog title");
+      return;
+    }
+
+    if(!obj.Desc.trim()){
+      toast.error("Please enter a short description");
+      return;
+    }
 
     set(child(DB , `blogs-CONTENT/${obj.title || JSON.parse(localStorage.getItem("blogToBeEdited"))}`)  , obj)
-    alert("item added successfully")
+    toast.success("Item added successfully")
 
        if(JSON.parse(localStorage.getItem("edit")) === true){
       navigation("/edit")
@@ -66,12 +77,26 @@ export default function CreateBlog() {
    
 
   if(themeName.start.Name == "Minimal Clean"){
-  
-    navigation(`/MinimalCleantheme/${obj.title}`)
+    navigation(`/MinimalCleanTheme/${obj.title}`)
   }
   else if(themeName.start.Name == "Editorial"){
     
      navigation(`/Editorial/${obj.title}`)
+  }
+  else if(themeName.start.Name == "Photo First"){
+         navigation(`/PhotoFirst/${obj.title}`) // create a route for this also 
+  }
+  else if(themeName.start.Name == "Dark Mode"){
+         navigation(`/DarkMode/${obj.title}`)
+  }
+  else if(themeName.start.Name == "Card Layout"){
+         navigation(`/CardLayout/${obj.title}`)
+  }
+  else if(themeName.start.Name == "Personal Journal"){
+         navigation(`/PersonalJournal/${obj.title}`)
+  }
+  else{
+    toast.warn("Selected theme is not supported yet.");
   }
 
     }
@@ -139,12 +164,12 @@ export default function CreateBlog() {
 
         {/* list */}
          <div className="form-group">
-          <label>Blog Content</label>
-          <input type="text" placeholder="key points"   onChange={(e)=>setObj({...obj , one:e.target.value})}   />
-           <input type="text" placeholder="key points"   onChange={(e)=>setObj({...obj , two:e.target.value})} />
-            <input type="text" placeholder="key points"   onChange={(e)=>setObj({...obj , three:e.target.value})} />
-             <input type="text" placeholder="key points"  onChange={(e)=>setObj({...obj , four:e.target.value})} />
-              <input type="text" placeholder="key points"   onChange={(e)=>setObj({...obj , five:e.target.value})} />
+         <label>Blog Content</label>
+          <input type="text" placeholder="key points"   onChange={(e)=>setObj({...obj , points:{...obj.points, one:e.target.value}})}   />
+           <input type="text" placeholder="key points"   onChange={(e)=>setObj({...obj , points:{...obj.points, two:e.target.value}})} />
+            <input type="text" placeholder="key points"   onChange={(e)=>setObj({...obj , points:{...obj.points, three:e.target.value}})} />
+             <input type="text" placeholder="key points"  onChange={(e)=>setObj({...obj , points:{...obj.points, four:e.target.value}})} />
+              <input type="text" placeholder="key points"   onChange={(e)=>setObj({...obj , points:{...obj.points, five:e.target.value}})} />
         </div>
 
         {/* CONTENT */}

@@ -1,0 +1,175 @@
+.card-layout-theme {
+  background: #0e0f13;
+  min-height: 100vh;
+  color: #f2f5f8;
+  font-family: "DM Serif Display", "Georgia", serif;
+}
+
+.cf-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cf-logo {
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.cf-navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.cf-navbar li {
+  cursor: pointer;
+  color: #d7dee6;
+}
+
+.cl-hero {
+  height: 100vh;
+  position: relative;
+}
+
+.cl-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(65%);
+}
+
+.cl-hero-overlay {
+  position: absolute;
+  bottom: 12%;
+  left: 8%;
+  max-width: 700px;
+}
+
+.cl-kicker {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  color: #b0c5ff;
+}
+
+.cl-hero-overlay h1 {
+  font-size: 56px;
+  margin: 10px 0 12px;
+}
+
+.cl-hero-overlay p {
+  font-size: 18px;
+  color: #d6dde4;
+}
+
+.cl-content {
+  padding: 120px 8%;
+  max-width: 900px;
+}
+
+.cl-content h2 {
+  font-size: 38px;
+  margin-bottom: 20px;
+}
+
+.cl-content p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #cfd6dd;
+}
+
+.cl-lists {
+  padding: 80px 8%;
+}
+
+.cl-lists h2 {
+  font-size: 34px;
+  margin-bottom: 40px;
+}
+
+.cl-lists ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.cl-lists li {
+  font-size: 16px;
+  color: #c5cdd6;
+  padding: 16px 18px;
+  background: #141821;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cl-image-story {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 100px 8%;
+}
+
+.cl-image-story img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.cl-long-content {
+  padding: 100px 8%;
+  max-width: 900px;
+}
+
+.cl-long-content h2 {
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+
+.cl-long-content p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #cfd6dd;
+}
+
+.cl-footer {
+  text-align: center;
+  padding: 30px;
+  color: #a7b1bb;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cl-loader {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cl-loader img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .cf-navbar,
+  .cl-content,
+  .cl-lists,
+  .cl-image-story,
+  .cl-long-content {
+    padding: 20px;
+  }
+
+  .cl-hero-overlay h1 {
+    font-size: 32px;
+  }
+}

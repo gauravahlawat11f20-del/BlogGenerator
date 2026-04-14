@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MinimalCleanPage.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { DB } from "../../OperationsWithFirebase/firebase";
 import { set , child , get } from "firebase/database";
 
@@ -11,6 +11,7 @@ import { set , child , get } from "firebase/database";
 export default function MinimalCleanTheme() {
 
  const {Title} = useParams()
+ const navigation = useNavigate()
 
  const title = {
   start:{
@@ -35,7 +36,7 @@ useEffect(()=>{
 // 🔥 SAFE: compute only when data exists
   const heroImage = data?.[Title]?.img || "/city.jpg";
 
-  if (!data) return null; // or loader
+  if (!data || !data[Title]) return null; // or loader
 
 
 
@@ -45,15 +46,18 @@ useEffect(()=>{
 
     <div className="minimal-clean">
       {/* Navbar */}
-      <nav className="navbar">
-        <div className="logo">{data[title.start.titlee].title}</div>
-        <ul className="nav-links">
+      <nav className="cf-navbar">
+        <h2 className="cf-logo">{data[title.start.titlee].title}</h2>
+        <ul>
           <li>Rate</li>
           <li>Download</li>
           <li>Share</li>
-          {
-            JSON.parse(localStorage.getItem("edit")) === true ? <li>Edit</li> : ""
-          }
+          {JSON.parse(localStorage.getItem("allow")) === true ? (
+            <li onClick={() => navigation(`/upload/MinimalCleanTheme/${Title}`)}>Upload</li>
+          ) : ""}
+          {JSON.parse(localStorage.getItem("edit")) === true ? (
+            <li onClick={() => navigation(`/create/Minimal Clean`)}>Edit</li>
+          ) : ""}
         </ul>
       </nav>
 
@@ -68,7 +72,7 @@ useEffect(()=>{
   }}  >
         <div className="hero-content">
           <h1>{data[title.start.titlee].title}</h1>
-          <p>{data[title.start.titlee].description}</p>
+          <p>{data[title.start.titlee].Desc}</p>
         </div>
       </section>
 
@@ -92,6 +96,24 @@ useEffect(()=>{
         </ul>
       </section>
 
+      {/* Blog Highlights */}
+      <section className="mc-highlights">
+        <div className="mc-highlight-card">
+          <h3>Key Takeaways</h3>
+          <ul>
+            <li>{data[title.start.titlee].points?.one || "Keep it simple."}</li>
+            <li>{data[title.start.titlee].points?.two || "Clarity beats clutter."}</li>
+            <li>{data[title.start.titlee].points?.three || "Balance text and visuals."}</li>
+            <li>{data[title.start.titlee].points?.four || "Strong headlines matter."}</li>
+            <li>{data[title.start.titlee].points?.five || "End with a clear takeaway."}</li>
+          </ul>
+        </div>
+        <div className="mc-highlight-card">
+          <h3>Story</h3>
+          <p>{data[title.start.titlee].content || "Start writing your blog content here."}</p>
+        </div>
+      </section>
+
       {/* About Section */}
       <section className="about-section">
         <h2>About MinimalClean</h2>
@@ -112,7 +134,7 @@ useEffect(()=>{
 
       {/* Footer */}
       <footer className="footer">
-        <p>© 2026 MinimalClean. All rights reserved.</p>
+        <p>(c) 2026 MinimalClean. All rights reserved.</p>
         <div className="footer-links">
           <span>Privacy</span>
           <span>Terms</span>

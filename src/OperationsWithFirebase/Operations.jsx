@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {DB} from './firebase'
 import { child , set , update , remove , get , onValue } from 'firebase/database'
+import { useToast } from '../components/ToastProvider'
 
 const Operations = () => {
 
@@ -15,11 +16,12 @@ const Operations = () => {
   const [key , setKey] = useState("")
 
   const [status , setStatus] = useState(false)
+  const toast = useToast()
 
  const handleAdd = ()=>{
  // write a code to add the data in db .. but first check whether the .. user already exists ...
  if(!obj.Name || !obj.Jutsu || !obj.Rank){
-    alert("fill up all the credential")
+    toast.error("Fill up all the credential")
  }
  else{
   // fetch the data first and check . if user with the same name is regiterd already or not 
@@ -30,7 +32,7 @@ const Operations = () => {
       set(child(DB,`users/${obj.Name}`) , obj) // ab value set ho gayi data me .. but ... toh mai bhi .. agar hum .. dubara .. 
       // jaise ... var data_2 = snap.val() .. edit kare .. oth kyaa pata chal jaye .. but thats not a great practise to do .. 
       // so use ELSE .. wahi best hai
-      alert("data added successfully")
+      toast.success("Data added successfully")
       // window.location.reload();
         get(child(DB,"users")) 
    .then(snap=>{
@@ -53,10 +55,10 @@ const Operations = () => {
      // now use filter on keys 
     var isThere =  keys.filter(key => key == obj.Name)
     if(isThere.length>0){ // alone variable na likhiyo .. khali array bhi true hi hota hai .. so use length
-      alert("user is already there")
+      toast.warn("User is already there")
     }else{
       set(child(DB,`users/${obj.Name}`) , obj) // data added
-      alert("data added successfully")
+      toast.success("Data added successfully")
      //  window.location.reload();
 
 

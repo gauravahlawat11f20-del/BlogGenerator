@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import "./MainDashboard.css"
 import { useNavigate, useParams } from 'react-router-dom';
-
+import { DB } from '../../../OperationsWithFirebase/firebase';
+import { get , child } from 'firebase/database';
 
 const MainDashboardd = () => {
 
@@ -17,6 +18,12 @@ const MainDashboardd = () => {
     }
   }
 
+    const [resObj , setResObj] = useState({
+      Name : "",
+      About : "asd",
+      Img:""
+    })
+
  const navigation =  useNavigate()
 
   const CreateBlog = ()=>{
@@ -24,14 +31,42 @@ const MainDashboardd = () => {
   }
 
   useEffect(()=>{
-   var currentUser = UrlName.start.Name;
-   localStorage.setItem("currentUser" , JSON.stringify(currentUser))
+  // var currentUser = UrlName.start.Name;
+  var realUser = JSON.parse(localStorage.getItem("CurrentUser"))
+   localStorage.setItem("currentUser" , JSON.stringify(realUser))
+
+      get(child(DB,`UserAuth`))
+        .then(snap=>{
+          var data = snap.val();
+          if(!data) return;
+          var keys = Object.keys(data) // all keys
+
+           var name = UrlName.start.Name || JSON.parse(localStorage.getItem("CurrentUser"))
+
+           var foundKey = keys.find(key=>data[key].Name == name)
+
+           if(!foundKey) return;
+
+           setResObj({
+             ...resObj,
+             Name : data[foundKey].Name,
+             About : data[foundKey].About  ? data[foundKey].About : "",
+             Img : data[foundKey].Img  ? data[foundKey].Img : "",
+           })
+        })
+    
+
   },[]) // when page loads
    
   return (
+
+ 
+
    <div className="dashboard">
 
-      {/* NAVBAR */}
+   <>
+   
+       {/* NAVBAR */}
       <nav className="navbar">
         <div className="logo">Blogify</div>
 
@@ -43,7 +78,7 @@ const MainDashboardd = () => {
         </ul>
 
         <div  className="profile">
-          <img onClick={()=>navigation(`/urProfile/${UrlName.start.Name}`)}  style={{height:"45px" , width:"45px" , borderRadius:"50%" , cursor:"pointer"}} src="/profilePic.jpg" alt="user" />
+          <img onClick={()=>navigation(`/urProfile/${UrlName.start.Name}`)}  style={{height:"45px" , width:"45px" , borderRadius:"50%" , cursor:"pointer"}} src={resObj.Img !=="" ? resObj.Img : "/profilePic.jpg"} alt="user" />
          
         </div>
       </nav>
@@ -70,6 +105,10 @@ const MainDashboardd = () => {
 
       </section>
 
+   
+   </>
+
+    
     </div>
 
   )

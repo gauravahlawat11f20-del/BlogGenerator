@@ -25,8 +25,17 @@ export default function CreativeFlowTheme() {
    
 
 
-    get(child(DB, "blogs-CONTENT")).then((snap) => {
-      setData(snap.val());
+    const effectiveTitle = Title || JSON.parse(localStorage.getItem("blogToBeEdited"));
+
+    get(child(DB, `blogs-CONTENT/${effectiveTitle}`)).then((snap) => {
+      const blog = snap.val();
+      if (blog) {
+        setData({ [effectiveTitle]: blog });
+        setIMG(blog.img || "/city.jpg");
+      } else {
+        setData(null);
+        setIMG("/city.jpg");
+      }
     });
 
 
@@ -41,41 +50,10 @@ export default function CreativeFlowTheme() {
   }, []);
 
   useEffect(()=>{
-    if(!data) return
-
-
-
-// now fetch the prev image data
-
-  get(child(DB,`BLOGS/${JSON.parse(localStorage.getItem("CurrentUser"))}`))
-     .then(snap=>{
-        var data = snap.val()
-        // now the task how to get the particular ID ...
-        if(!data) {
-           setIMG("R.jpg")
-           console.log("yess i am there")
-           return;
-        }
-         console.log("yess i am there")
-
-        var keys = Object.keys(data) // blogID created by gaurav 
-        //  ab dhundo konsi blog id chahiye .. we do that ,.. on the basis of .. title name
-
-        var title =  Title || JSON.parse(localStorage.getItem("blogToBeEdit"))
-
-       var desiredBlogID = keys.filter(key=> data[key].Title == title )
-
-       var imggg = data[desiredBlogID].Img
-        console.log(imggg)
-       // now set that to state
-        setIMG(imggg)
-     })
-
- 
-     
-   
-
-  },[data])
+    if(!IMG){
+      setIMG("/city.jpg")
+    }
+  },[IMG])
 
   useEffect(()=>{
    console.log(IMG)
@@ -121,9 +99,14 @@ export default function CreativeFlowTheme() {
         </div>
 
         <div className="cf-hero-right">
+          <div className="cf-laptop">
+            <img className="cf-laptop-frame" src="/laptop.jpg" alt="Laptop" />
+            <div className="cf-laptop-screen">
+              <img src={data[Title].img || IMG || "/city.jpg"} alt="Blog preview" />
+            </div>
+          </div>
           <img src="/gtx.webp" alt="" />
           <img src="/lap2.avif" alt="" />
-          <img src="/laptop.jpg" alt="" />
         </div>
       </section>
 
@@ -151,7 +134,7 @@ export default function CreativeFlowTheme() {
 
       {/* FOOTER */}
       <footer className="cf-footer">
-        <p>© 2026 CreativeFlow Blog Theme</p>
+        <p>(c) 2026 CreativeFlow Blog Theme</p>
       </footer>
       </>
        )

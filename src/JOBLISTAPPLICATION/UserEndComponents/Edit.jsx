@@ -21,6 +21,7 @@ const Edit = () => {
    get(child(DB,`BLOGS/${CurrentUser}`))
     .then(snap=>{
         var data = snap.val(); // saari ids of the gaurav
+        if(!data) return;
 
         var ids = Object.keys(data) // saari keys .. ab inpe laga .. 
 
@@ -51,6 +52,7 @@ const Edit = () => {
 )
 
   const data = snap.val();
+  if(!data) return;
 
   console.log(data)
 

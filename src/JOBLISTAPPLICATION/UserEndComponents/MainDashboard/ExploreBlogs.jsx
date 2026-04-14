@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import "./ExploreBlogs.css";
 import { DB } from "../../../OperationsWithFirebase/firebase";
 import { set, get, child, onValue } from "firebase/database";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function ExploreBlogs() {
   const [data, setData] = useState("");
@@ -18,6 +18,23 @@ export default function ExploreBlogs() {
   const [cmnt , setCmnt] = useState()
 
   const navigation = useNavigate();
+  const { Name } = useParams();
+
+    const [resObj , setResObj] = useState({
+        Name : "",
+        About : "",
+        Img:""
+      })
+
+  const routeForTheme = (theme) => {
+    if (theme === "Minimal Clean" || theme === "MinimalCleanTheme") return "MinimalCleanTheme";
+    if (theme === "Editorial") return "Editorial";
+    if (theme === "Photo First" || theme === "PhotoFirst") return "PhotoFirst";
+    if (theme === "Dark Mode" || theme === "DarkMode") return "DarkMode";
+    if (theme === "Card Layout" || theme === "CardLayout") return "CardLayout";
+    if (theme === "Personal Journal" || theme === "PersonalJournal") return "PersonalJournal";
+    return theme;
+  };
 
   const toggleLike = (key) => {
     const isLiked = likedPosts[key];
@@ -105,6 +122,34 @@ export default function ExploreBlogs() {
 
    localStorage.setItem("edit" , JSON.stringify(false))
 
+
+
+    get(child(DB,`UserAuth`))
+           .then(snap=>{
+             var data = snap.val();
+             if(!data) return;
+             var keys = Object.keys(data) // all keys 
+
+              var name = Name || JSON.parse(localStorage.getItem("CurrentUser"))
+
+              var foundKey = keys.find(key=>data[key].Name == name)
+
+              if(!foundKey) return;
+
+              setResObj({
+                ...resObj,
+                Name : data[foundKey].Name,
+                About : data[foundKey].About  ? data[foundKey].About : "",
+                Img : data[foundKey].Img  ? data[foundKey].Img : "",
+              })
+           })
+
+           // now code for .. to fetcht the image for particular author 
+
+       
+       
+   
+
   }, []);
 
   useEffect(() => {
@@ -166,7 +211,7 @@ export default function ExploreBlogs() {
                       By {data[key].Author}
                     </span>
 
-                      <img onClick={()=>navigation(`/urProfile/${data[key].Author}`)}  style={{height:"40px" , marginLeft:"10px" , width:"45px" , borderRadius:"50%" , cursor:"pointer"}} src="/profilePic.jpg" alt="user" />
+                      <img onClick={()=>navigation(`/urProfile/${data[key].Author}`)}  style={{height:"40px" , marginLeft:"10px" , width:"45px" , borderRadius:"50%" , cursor:"pointer"}} src={ data[key].proImg ? data[key].proImg : "/profilePic.jpg"} alt="user" />
 
 
                   </div>
@@ -176,7 +221,7 @@ export default function ExploreBlogs() {
                   </p>
 
                   <div className="project-actions">
-                    <button onClick={()=>navigation(`/${data[key].Theme}/${data[key].Title}`)} className="preview-btn">
+                    <button onClick={()=>navigation(`/${routeForTheme(data[key].Theme)}/${data[key].Title}`)} className="preview-btn">
                       Preview
                     </button>
 

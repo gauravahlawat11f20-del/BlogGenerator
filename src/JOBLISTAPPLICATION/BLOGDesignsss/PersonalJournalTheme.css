@@ -1,0 +1,120 @@
+.personal-journal {
+  min-height: 100vh;
+  background: #fbf6ef;
+  color: #2a1f1f;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+}
+
+.cf-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 48px;
+  border-bottom: 1px solid #eadbce;
+}
+
+.cf-logo {
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.cf-navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.cf-navbar li {
+  cursor: pointer;
+  color: #3a2c2c;
+}
+
+.pj-page {
+  padding: 40px 60px;
+}
+
+.pj-header h1 {
+  font-size: 42px;
+  margin: 6px 0 10px;
+}
+
+.pj-date {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+.pj-subtitle {
+  color: #4a3a3a;
+}
+
+.pj-hero img {
+  width: 100%;
+  border-radius: 16px;
+  margin: 26px 0;
+  max-height: 360px;
+  object-fit: cover;
+}
+
+.pj-hero-note {
+  background: #fff;
+  margin-top: -16px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.pj-content {
+  line-height: 1.7;
+  font-size: 18px;
+}
+
+.pj-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  display: grid;
+  gap: 8px;
+}
+
+.pj-cards {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-top: 30px;
+}
+
+.pj-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+}
+
+.pj-footer {
+  margin-top: 40px;
+  color: #5a4848;
+}
+
+.pj-loader {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fbf6ef;
+}
+
+.pj-loader img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .pj-page {
+    padding: 24px;
+  }
+}

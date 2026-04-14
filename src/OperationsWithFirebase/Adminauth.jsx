@@ -3,6 +3,7 @@ import "./Adminauth.css"
 import { useState } from 'react'
 import { DB } from './firebase';
 import { set , child  , get} from 'firebase/database';
+import { useToast } from '../components/ToastProvider';
 
 const Adminauth = () => {
 
@@ -13,12 +14,13 @@ const Adminauth = () => {
     Password:"",
     Name:""
   })
+  const toast = useToast()
 
   const handleClick = ()=>{
     if(!isLogin){ // for registers
 
      if(!obj.Name || !obj.Email || !obj.Password){
-        alert("fill all the credential")
+        toast.error("Fill all the credential")
      }
      else{
         // get the prev data and check
@@ -29,7 +31,7 @@ const Adminauth = () => {
             if(!data){
                 set(child(DB,`Amin/${obj.Password}`) , obj);
                 console.log("admin added")
-                alert("data added successfully")
+                toast.success("Data added successfully")
             }
             else{
 
@@ -37,12 +39,12 @@ const Adminauth = () => {
 
             var filteredKey = keys.filter(key => key == obj.Password)
             if(filteredKey.length > 0){
-                alert("admin already registerd with same name")
+                toast.warn("Admin already registered with same name")
             }
             else{
                  set(child(DB,`Amin/${obj.Password}`) , obj);
                   console.log("admin added")
-                alert("data added successfully")
+                toast.success("Data added successfully")
             }
 
             }    
@@ -53,7 +55,7 @@ const Adminauth = () => {
         // login logic
 
     if(!obj.Email || !obj.Password){
-        alert("fill all the credential")
+        toast.error("Fill all the credential")
     }else{
         get(child(DB,"Amin"))
         .then(snap=>{
@@ -61,11 +63,11 @@ const Adminauth = () => {
             var keys = Object.keys(data)
             var admin = keys.filter(key => key == obj.Password)
             if(admin.length > 0){
-              alert("admin found .. check in console")
+              toast.success("Admin found. Check in console")
              console.log(data[admin])
             }
             else{
-              alert("Admin not found")
+              toast.error("Admin not found")
             }
         })
     }

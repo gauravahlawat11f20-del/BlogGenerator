@@ -3,6 +3,7 @@ import "./PublishProject.css";
 import { useParams } from "react-router-dom";
 import { DB } from "../../OperationsWithFirebase/firebase";
 import { get , set ,child, update ,ref ,onValue , off } from "firebase/database"; 
+import { useToast } from "../../components/ToastProvider";
 
 export default function PublishProject() {
 
@@ -16,7 +17,8 @@ export default function PublishProject() {
 
      const [allow , setAllowance] = useState(false)
 
-     const[blogData , setBlogData] = useState()
+  const[blogData , setBlogData] = useState()
+  const toast = useToast()
 
   const prms ={
     start :{
@@ -32,13 +34,17 @@ export default function PublishProject() {
 
     // now set the .. data into firebase
      var userName = JSON.parse(localStorage.getItem("CurrentUser")) // Name 
+     if(!data || !data[Title]){
+       toast.error("Blog content not loaded yet. Please try again.");
+       return;
+     }
      if(JSON.parse(localStorage.getItem("edit")) != true){
         var blogid = Date.now(); // agar edit nhi kar rahe ho toh .. new ID generate maro 
         // state ki help se set maar isko
     //    setAllowance(true)  // pehle kayde se ye set ... hogi ... blogID se toh pehle hi hogi chahe  jo merzi time lag ja
        //  setBlogID(blogid)
 
-       console.log(data[Title].Desc , desc)
+       console.log(data[Title] , desc)
 
             set(child(DB,`BLOGS/${userName}/${blogid}`) , {Title : prms.start.Title , Theme:prms.start.Theme , Desc:data[Title].Desc , 
         // now set the retrieved data
@@ -63,12 +69,12 @@ export default function PublishProject() {
       }
     )
 
-      alert("done just check now + both done ...")
+      toast.success("Done. Check now, both updated.")
 
 
      }
      else{
-      alert("wanna edit???")
+      toast.info("Wanna edit?")
       // search karo .. pehle ... BLOGS me .. acc to title + description to get the desried blog id .. and set that 
       var CurrentUser = JSON.parse(localStorage.getItem("CurrentUser"))
       get(child(DB,`BLOGS/${CurrentUser}`))
@@ -134,6 +140,8 @@ export default function PublishProject() {
       // loop chalade filter ispe .. but first ye obj hai toh isko convery karle ... arraay me 
 
       // run loop
+       if(!data || !data[blogTit]) return;
+
        const objjj = Object.keys(data[blogTit]).filter(
       key => data[blogTit][key] !== "" && data[blogTit][key] != null
      );
@@ -157,7 +165,7 @@ export default function PublishProject() {
 
 console.log( "before update" +  blogData[blogID])
 
-      alert("done and updated successfully")
+      toast.success("Done and updated successfully")
 
      
 
@@ -180,7 +188,7 @@ console.log( "before update" +  blogData[blogID])
         
 
    
-  },[allow, blogID, blogData])
+  },[allow, blogID, blogData, data])
 
   return (
     <div className="publish-wrapper">

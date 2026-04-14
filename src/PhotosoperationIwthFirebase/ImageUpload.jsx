@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import {DB} from '../OperationsWithFirebase/firebase'
 import {set,get,child, update} from 'firebase/database'
 import { useNavigate } from 'react-router-dom'
+import { useToast } from '../components/ToastProvider'
 
 const ImageUpload = () => {
 
     const [ folderName  , setFolderName] = useState()
     const [imgPath , setImgPath] = useState()
     const navigation  = useNavigate()
+    const toast = useToast()
 
     const [arr , setArr] = useState([])
 
@@ -25,7 +27,7 @@ const ImageUpload = () => {
   const handleClick = ()=>{  
 
     if(!folderName){
-        alert("fill all the credential")
+        toast.error("Fill all the credential")
     }
     else{
           // check if the same data is already present
@@ -36,7 +38,7 @@ const ImageUpload = () => {
 
             if(!data){
              set(child(DB,`Images/${folderName}`) , {Name : folderName , Path : [...arr , imgPath]})
-             alert("data added successfully")
+             toast.success("Data added successfully")
              navigation("/move")
             }
             else{
@@ -46,12 +48,12 @@ const ImageUpload = () => {
            if(isThere.length>0){
            // alert("this same name folder already exists")
            update(child(DB,`Images/${folderName}`) , {Path : [... data[folderName].Path , imgPath]} )
-           alert("data added successfully")
+           toast.success("Data added successfully")
            navigation("/move")
            }
           else{
              set(child(DB,`Images/${folderName}`) , {Name : folderName , Path : [...arr , imgPath] })
-             alert("data added successfully")
+             toast.success("Data added successfully")
              navigation("/move")
           }
             } 
